@@ -1,65 +1,81 @@
 #include "WerewolfClient.h"
 #include <iostream>
 
-WerewolfClient::WerewolfClient(const sf::IpAddress& serverIp, unsigned short serverPort) {
-    if (socket.connect(serverIp, serverPort) != sf::Socket::Done) {
-        std::cerr << "Unable to connect to server" << std::endl;
+WerewolfClient::WerewolfClient(const sf::IpAddress& serverIp, unsigned short serverPort) 
+{
+    if (socket.connect(serverIp, serverPort) != sf::Socket::Done) 
+    {
+        std::cerr << "Error al conectarse al servidor" << std::endl;
     }
-    else {
-        std::cout << "Connected to server at " << serverIp << ":" << serverPort << std::endl;
+    else 
+    {
+        std::cout << "Conectado al servidor " << serverIp << ":" << serverPort << std::endl;
     }
 }
 
-void WerewolfClient::run() {
-    while (true) {
+void WerewolfClient::run() 
+{
+    while (true) 
+    {
         sf::Packet packet;
-        if (socket.receive(packet) == sf::Socket::Done) {
+        if (socket.receive(packet) == sf::Socket::Done) 
+        {
             std::string message;
             packet >> message;
-            if (message == "Game started") {
-                std::cout << "The game has started!" << std::endl;
+            if (message == "!!Inicia el juego!!") 
+            {
+                std::cout << "Ha comenzado!" << std::endl;
             }
-            else if (message == "Night phase") {
+            else if (message == "Noche....") 
+            {
                 handleNightPhase();
             }
-            else if (message == "Day phase") {
+            else if (message == "Dia....") 
+            {
                 handleDayPhase();
             }
-            else if (message == "Voting phase") {
+            else if (message == "Hora de Votar") 
+            {
                 handleVotingPhase();
             }
-            else {
+            else 
+            {
                 int roleInt;
                 packet >> roleInt;
                 Role role = static_cast<Role>(roleInt);
-                std::cout << "Your role is: " << roleToString(role) << std::endl;
+                std::cout << "Tu rol es: " << roleToString(role) << std::endl;
             }
         }
     }
 }
 
-void WerewolfClient::handleNightPhase() {
-    std::cout << "It's night time. Performing night actions..." << std::endl;
-    std::string action = "select victim";
+void WerewolfClient::handleNightPhase() 
+{
+    std::cout << "Es de noche, has lo tuyo..." << std::endl;
+    std::string action = "Selecciona una victima";
     sf::Packet packet;
     packet << action;
     socket.send(packet);
 }
 
-void WerewolfClient::handleDayPhase() {
-    std::cout << "It's daytime. Discuss and prepare for voting..." << std::endl;
+void WerewolfClient::handleDayPhase() 
+{
+    std::cout << "Es de dia, discutan y preparense para votar..." << std::endl;
 }
 
-void WerewolfClient::handleVotingPhase() {
-    std::cout << "It's voting time. Vote to eliminate a suspect..." << std::endl;
-    std::string vote = "vote player";
+void WerewolfClient::handleVotingPhase() 
+{
+    std::cout << "Es hora de votar, alguien se va..." << std::endl;
+    std::string vote = "Vota por un jugador";
     sf::Packet packet;
     packet << vote;
     socket.send(packet);
 }
 
-std::string WerewolfClient::roleToString(Role role) {
-    switch (role) {
+std::string WerewolfClient::roleToString(Role role) 
+{
+    switch (role) 
+    {
     case Role::Aldeano: return "Aldeano";
     case Role::HombreLobo: return "Hombre Lobo";
     case Role::Vidente: return "Vidente";
