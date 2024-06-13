@@ -3,21 +3,22 @@
 #define WEREWOLFCLIENT_H
 
 #include <SFML/Network.hpp>
+#include <iostream>
 #include "Role.h"
 
 class WerewolfClient {
 public:
-    WerewolfClient(const sf::IpAddress& serverIp, unsigned short serverPort);
+    WerewolfClient(const sf::IpAddress& serverIp, unsigned short serverPort, const std::string& playerName);
     void run();
 
 private:
-    void handleNightPhase();
+    void handleGameStart();
     void handleDayPhase();
     void handleVotingPhase();
     std::string roleToString(Role role);
 
     sf::TcpSocket socket;
-    Role role;
+    std::string playerName;
 };
 
 #endif
