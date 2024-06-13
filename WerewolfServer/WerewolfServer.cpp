@@ -1,34 +1,86 @@
 #include "WerewolfServer.h"
 #include <iostream>
-#include <algorithm>
-#include <random>
+
+using std::cerr;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
 
 WerewolfServer::WerewolfServer(unsigned short port) 
 {
     if (listener.listen(port) != sf::Socket::Done) 
     {
-        std::cerr << "Error al iniciar el server en el puerto: " << port << std::endl;
+        cerr << "Error al iniciar el servidor en el puerto: " << port << endl;
     }
     else 
     {
-        std::cout << "Puerto del server " << port << std::endl;
+        cout << "Servidor iniciado en el puerto: " << port << endl;
     }
+}
+
+void WerewolfServer::startGame() 
+{
+    gameStarted = true;
+    broadcastMessage("Game started");
+    broadcastPlayerList();
+    // Lógica adicional para iniciar el juego, por ejemplo, asignar roles, etc.
+}
+
+void WerewolfServer::handleVotes() 
+{
+    std::map<string, int> voteCount;
+    for (auto& client : clients) 
+    {
+        sf::Packet packet;
+        if (client->receive(packet) == sf::Socket::Done) 
+        {
+            string vote;
+            packet >> vote;
+            voteCount[vote]++;
+        }
+    }
+
+    // Encontrar el jugador con más votos
+    string playerToEliminate;
+    int maxVotes = 0;
+    for (const auto& vote : voteCount) 
+    {
+        if (vote.second > maxVotes) 
+        {
+            maxVotes = vote.second;
+            playerToEliminate = vote.first;
+        }
+    }
+
+    if (!playerToEliminate.empty()) 
+    {
+        broadcastMessage("El jugador " + playerToEliminate + " ha sido eliminado.");
+        // Lógica adicional para manejar la eliminación del jugador
+    }
+}
+
+void WerewolfServer::broadcastMessage(const string& message) 
+{
+    for (auto& client : clients) 
+    {
+        sf::Packet packet;
+        packet << message;
+        client->send(packet);
+    }
+}
+
+void WerewolfServer::broadcastPlayerList() 
+{
+    string playerList = "Player list: ";
+    for (const auto& name : playerNames) 
+    {
+        playerList += name + " ";
+    }
+    broadcastMessage(playerList);
 }
 
 void WerewolfServer::run() 
-{
-    std::thread acceptThread(&WerewolfServer::acceptClients, this);
-    acceptThread.detach();
-
-    while (true) 
-    {
-        if (gameStarted) {
-            handleGameLogic();
-        }
-    }
-}
-
-void WerewolfServer::acceptClients() 
 {
     while (true) 
     {
@@ -36,9 +88,20 @@ void WerewolfServer::acceptClients()
         if (listener.accept(*client) == sf::Socket::Done) 
         {
             clients.push_back(client);
-            std::cout << "Nuevo usuario conectado: " << client->getRemoteAddress() << std::endl;
-            if (clients.size() == maxPlayers) 
+            cout << "Nuevo cliente conectado: " << client->getRemoteAddress() << endl;
+
+            // Recibir nombre del jugador
+            sf::Packet packet;
+            if (client->receive(packet) == sf::Socket::Done) 
             {
+                string playerName;
+                packet >> playerName;
+                clientNames[client] = playerName;
+                playerNames.push_back(playerName);
+            }
+
+            if (clients.size() == 3) // para simular con 3 clientes
+            { 
                 startGame();
             }
         }
@@ -49,87 +112,3 @@ void WerewolfServer::acceptClients()
     }
 }
 
-void WerewolfServer::startGame() 
-{
-    assignRoles();
-    gameStarted = true;
-    for (auto& client : clients) 
-    {
-        sf::Packet packet;
-        packet << "!!Inicia el juego!!";
-        client->send(packet);
-    }
-}
-
-void WerewolfServer::assignRoles() 
-{
-    std::vector<Role> roles = { Role::HombreLobo, Role::HombreLobo, Role::Vidente, Role::Cazador, Role::Bruja };
-    for (size_t i = roles.size(); i < clients.size(); ++i) 
-    {
-        roles.push_back(Role::Aldeano);
-    }
-    std::shuffle(roles.begin(), roles.end(), std::mt19937{ std::random_device{}() });
-
-    for (size_t i = 0; i < clients.size(); ++i) 
-    {
-        playerRoles[clients[i]] = roles[i];
-        sf::Packet packet;
-        packet << static_cast<int>(roles[i]);
-        clients[i]->send(packet);
-    }
-}
-
-void WerewolfServer::handleGameLogic() 
-{
-    while (gameStarted) 
-    {
-        switch (currentPhase) 
-        {
-        case Phase::Night:
-            handleNightPhase();
-            break;
-        case Phase::Day:
-            handleDayPhase();
-            break;
-        case Phase::Voting:
-            handleVotingPhase();
-            break;
-        }
-    }
-}
-
-void WerewolfServer::handleNightPhase() 
-{
-    for (auto& client : clients) 
-    {
-        sf::Packet packet;
-        packet << "Noche....";
-        client->send(packet);
-    }
-    std::this_thread::sleep_for(std::chrono::seconds(10));
-    currentPhase = Phase::Day;
-}
-
-void WerewolfServer::handleDayPhase() 
-{
-    for (auto& client : clients) 
-    {
-        sf::Packet packet;
-        packet << "Dia....";
-        client->send(packet);
-    }
-    std::this_thread::sleep_for(std::chrono::seconds(10));
-    currentPhase = Phase::Voting;
-}
-
-void WerewolfServer::handleVotingPhase() 
-{
-    for (auto& client : clients) 
-    {
-        sf::Packet packet;
-        packet << "Hora de Votar";
-        client->send(packet);
-    }
-    std::this_thread::sleep_for(std::chrono::seconds(10));
-    currentPhase = Phase::Night;
-}

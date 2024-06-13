@@ -3,12 +3,10 @@
 #define WEREWOLFSERVER_H
 
 #include <SFML/Network.hpp>
+#include <iostream>
 #include <vector>
 #include <map>
-#include <thread>
 #include "Role.h"
-#include "Phase.h"
-#include <iostream> 
 
 class WerewolfServer {
 public:
@@ -16,20 +14,16 @@ public:
     void run();
 
 private:
-    void acceptClients();
     void startGame();
-    void assignRoles();
-    void handleGameLogic();
-    void handleNightPhase();
-    void handleDayPhase();
-    void handleVotingPhase();
+    void handleVotes();
+    void broadcastMessage(const std::string& message);
+    void broadcastPlayerList();
 
     sf::TcpListener listener;
     std::vector<sf::TcpSocket*> clients;
-    std::map<sf::TcpSocket*, Role> playerRoles;
-    const size_t maxPlayers = 10; // Numero maximo de jugadores
+    std::map<sf::TcpSocket*, std::string> clientNames;
+    std::vector<std::string> playerNames;
     bool gameStarted = false;
-    Phase currentPhase = Phase::Night;
 };
 
 #endif
