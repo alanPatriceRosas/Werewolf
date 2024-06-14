@@ -4,21 +4,40 @@
 
 #include <SFML/Network.hpp>
 #include <iostream>
+#include <string>
+#include <thread>
+#include <atomic>
 #include "Role.h"
 
-class WerewolfClient {
+using std::cout;
+using std::cin;
+using std::string;
+using std::cerr;
+using std::endl;
+using std::getline;
+using std::thread;
+
+
+class WerewolfClient 
+{
 public:
-    WerewolfClient(const sf::IpAddress& serverIp, unsigned short serverPort, const std::string& playerName);
-    void run();
+    WerewolfClient(const string& playerName);
+
+    void run(const string& serverIp, unsigned short serverPort);
 
 private:
+    void receiveMessages();
+
     void handleGameStart();
-    void handleDayPhase();
-    void handleVotingPhase();
-    std::string roleToString(Role role);
+
+    void handleVotePhase();
+
+    void handleNightPhase();
 
     sf::TcpSocket socket;
-    std::string playerName;
+    string playerName;
+    thread receiveThread;
+    std::atomic<bool> running;
 };
 
 #endif

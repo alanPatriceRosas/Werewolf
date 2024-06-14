@@ -1,16 +1,16 @@
 #include "WerewolfServer.h"
+#include <iostream>
 
-//bajo la misma red
+int main() {
+    us puerto = 53000;
+    WerewolfServer server(puerto);
 
-using std::cout;
-using std::endl;
+    // Obtener la IP local del servidor
+    sf::IpAddress ip = sf::IpAddress::getLocalAddress();
+    cout << "Server IP:\t " << ip.toString() << "\nPuerto:\t " << puerto << endl;
 
-int main() 
-{
-    sf::IpAddress localIp = sf::IpAddress::getLocalAddress();
-    cout << "La direcci"<< char(162) <<"n IP del servidor es: " << localIp.toString() << endl;
-    unsigned short port = 53000; //ejemplo puerto
-    WerewolfServer server(port);
     server.run();
+
     return 0;
 }
+
