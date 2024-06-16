@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B58F382F-9C12-4403-807A-129A07D45113}|VisualCliente\\SFML_Test.vcxproj|C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\VisualCliente\\Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B58F382F-9C12-4403-807A-129A07D45113}|VisualCliente\\SFML_Test.vcxproj|solutionrelative:VisualCliente\\Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{F9213A6B-1AD3-49C3-BE9E-2C45A6DE05D9}|Visual\\Visual.vcxproj|C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\Visual\\Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F9213A6B-1AD3-49C3-BE9E-2C45A6DE05D9}|Visual\\Visual.vcxproj|solutionrelative:Visual\\Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B58F382F-9C12-4403-807A-129A07D45113}|VisualCliente\\SFML_Test.vcxproj|C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\VisualCliente\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B58F382F-9C12-4403-807A-129A07D45113}|VisualCliente\\SFML_Test.vcxproj|solutionrelative:VisualCliente\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{F9213A6B-1AD3-49C3-BE9E-2C45A6DE05D9}|Visual\\Visual.vcxproj|C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\Visual\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F9213A6B-1AD3-49C3-BE9E-2C45A6DE05D9}|Visual\\Visual.vcxproj|solutionrelative:Visual\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Main.cpp",
-              "DocumentMoniker": "C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\VisualCliente\\Main.cpp",
-              "RelativeDocumentMoniker": "VisualCliente\\Main.cpp",
-              "ToolTip": "C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\VisualCliente\\Main.cpp",
-              "RelativeToolTip": "VisualCliente\\Main.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-16T16:48:11.749Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Menu.cpp",
-              "DocumentMoniker": "C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\VisualCliente\\Menu.cpp",
-              "RelativeDocumentMoniker": "VisualCliente\\Menu.cpp",
-              "ToolTip": "C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\VisualCliente\\Menu.cpp",
-              "RelativeToolTip": "VisualCliente\\Menu.cpp",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAABMAAAAXAAAA",
+              "DocumentMoniker": "C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\Visual\\Menu.cpp",
+              "RelativeDocumentMoniker": "Visual\\Menu.cpp",
+              "ToolTip": "C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\Visual\\Menu.cpp",
+              "RelativeToolTip": "Visual\\Menu.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-16T16:47:32.761Z",
+              "WhenOpened": "2024-06-16T17:04:51.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Main.cpp",
+              "DocumentMoniker": "C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\Visual\\Main.cpp",
+              "RelativeDocumentMoniker": "Visual\\Main.cpp",
+              "ToolTip": "C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\Visual\\Main.cpp",
+              "RelativeToolTip": "Visual\\Main.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-16T17:02:42.651Z",
               "EditorCaption": ""
             }
           ]

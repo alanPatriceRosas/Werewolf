@@ -1,0 +1,13 @@
+﻿  Main.cpp
+C:\Users\USER\Documents\GitHub\Werewolf\VisualCliente\Main.cpp(5,15): error C2280: 'Menu::Menu(const Menu &)': se está intentando hacer referencia a una función eliminada.
+  C:\Users\USER\Documents\GitHub\Werewolf\VisualCliente\Menu.h(35,1):
+  el compilador generó 'Menu::Menu' aquí
+  C:\Users\USER\Documents\GitHub\Werewolf\VisualCliente\Menu.h(35,1):
+  "Menu::Menu(const Menu &)": la función se eliminó implícitamente porque un objeto miembro de datos invoca a una función "sf::RenderWindow::RenderWindow(const sf::RenderWindow &)" eliminada o inaccesible.
+  C:\SFML-2.6.1\include\SFML\Graphics\RenderWindow.hpp(198,1):
+  "sf::RenderWindow::RenderWindow(const sf::RenderWindow &)": la función se eliminó implícitamente porque un objeto clase base invoca a una función "sf::Window::Window(const sf::Window &)" eliminada o inaccesible.
+  C:\SFML-2.6.1\include\SFML\Window\Window.hpp(282,1):
+  "sf::Window::Window(const sf::Window &)": la función se eliminó implícitamente porque un objeto clase base invoca a una función "sf::WindowBase::WindowBase(const sf::WindowBase &)" eliminada o inaccesible.
+  C:\SFML-2.6.1\include\SFML\Window\WindowBase.hpp(475,1):
+  "sf::WindowBase::WindowBase(const sf::WindowBase &)": la función se eliminó implícitamente porque un objeto clase base invoca a una función "sf::NonCopyable::NonCopyable(const sf::NonCopyable &)" eliminada o inaccesible.
+  
