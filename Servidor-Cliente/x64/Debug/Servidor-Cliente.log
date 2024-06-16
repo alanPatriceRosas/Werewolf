@@ -1,2 +1,6 @@
-﻿  LINK : no se encontró C:\Users\USER\Documents\GitHub\Werewolf\x64\Debug\Servidor-Cliente.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
+﻿  Source.cpp
+  WerewolfServer.cpp
+C:\Users\USER\Documents\GitHub\Werewolf\Servidor-Cliente\WerewolfServer.cpp(24,20): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+  Generando código...
+  LINK : no se encontró C:\Users\USER\Documents\GitHub\Werewolf\x64\Debug\Servidor-Cliente.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
   Servidor-Cliente.vcxproj -> C:\Users\USER\Documents\GitHub\Werewolf\x64\Debug\Servidor-Cliente.exe
