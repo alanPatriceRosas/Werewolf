@@ -2,12 +2,12 @@
 #include <iostream>
 
 int main() {
-    us puerto = 53000;
+    us puerto = 5300;
     WerewolfServer server(puerto);
 
-    // Obtener la IP local del servidor
-    sf::IpAddress ip = sf::IpAddress::getLocalAddress();
-    cout << "Server IP:\t " << ip.toString() << "\nPuerto:\t " << puerto << endl;
+    // getLocalAddress() te da la IP LOCAL del servidor pero como usamos hamachi ponemos la IP de hamachi
+    sf::IpAddress ip = /*"25.66.81.128";*/sf::IpAddress::getLocalAddress();
+    cout << "Server IP:\t" << ip.toString() << "\nPuerto:\t\t" << puerto << endl;
 
     server.run();
 

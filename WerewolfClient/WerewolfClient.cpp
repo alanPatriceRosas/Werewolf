@@ -1,77 +1,126 @@
 #include "WerewolfClient.h"
+#include <iostream>
 
-WerewolfClient::WerewolfClient(const string& playerName): playerName(playerName), running(true) {}
-
-void WerewolfClient::run(const string& serverIp, unsigned short serverPort) 
+WerewolfClient::WerewolfClient(const string& serverIp, unsigned short serverPort) : serverIp(serverIp), serverPort(serverPort)
 {
-    if (socket.connect(serverIp, serverPort) != sf::Socket::Done) 
-    {
-        cerr << "Error al conectar al servidor" << endl;
-        return;
-    }
+    socket.setBlocking(true); 
+}
 
-    // Enviar el nombre del jugador al servidor
+bool WerewolfClient::connectToServer()
+{
+    sf::Socket::Status status = socket.connect(serverIp, serverPort);
+    if (status != sf::Socket::Done) 
+    {
+        cerr << "Error al conectar al servidor." << endl;
+        return false;
+    }
+    socket.setBlocking(false); 
+    return true;
+}
+
+void WerewolfClient::sendName(const string& name)
+{
     sf::Packet packet;
-    packet << playerName;
+    packet << name;
     socket.send(packet);
-
-    receiveThread = thread(&WerewolfClient::receiveMessages, this);
-
-    while (running) 
-    {
-        string input;
-        getline(cin, input);
-
-        if (!input.empty()) 
-        {
-            sf::Packet packet;
-            packet << input;
-            socket.send(packet);
-        }
-    }
-
-    if (receiveThread.joinable()) 
-    {
-        receiveThread.join();
-    }
 }
 
-void WerewolfClient::receiveMessages() 
+void WerewolfClient::receiveMessages()
 {
-    while (running) 
+    sf::Packet packet;
+    if (socket.receive(packet) == sf::Socket::Done)
     {
-        sf::Packet packet;
-        if (socket.receive(packet) == sf::Socket::Done) 
-        {
-            string message;
-            packet >> message;
-            cout << "Server: " << message << endl;
+        string message;
+        packet >> message;
+        cout << "Mensaje del servidor: " << message << endl;
 
-            if (message == "Juego Iniciado") 
-            {
-                handleGameStart();
-            }
-        }
-        else 
+        if (message == "GAME_START")
         {
-            running = false;
+            handleGameStart();
+        }
+        else if (message == "VOTE_PHASE")
+        {
+            handleVotePhase();
+        }
+        else if (message == "NIGHT_PHASE")
+        {
+            handleNight();
+        }
+        else if (message == "HOMBRES_LOBO_PHASE")
+        {
+            handleWerewolfPhase();
+        }
+        else if (message.find("ROLE") == 0)
+        {
+            handleRoleMessage(message);
+        }
+        else if (message == "Esperando a al menos 7 jugadores.")
+        {
+            cout << "Esperando ..." << endl;
         }
     }
 }
 
-void WerewolfClient::handleGameStart() 
+void WerewolfClient::sendVote(const string& vote)
 {
-    cout << "El juego ha comenzado!" << endl;
+    sf::Packet packet;
+    packet << vote;
+    socket.send(packet);
 }
 
-void WerewolfClient::handleVotePhase() 
+void WerewolfClient::performNightAction(const string& action)
 {
-    cout << "Es hora de votar! Elige a un jugador para eliminar:" << endl;
-    // Lógica para manejar la fase de votación
+    sf::Packet packet;
+    packet << action;
+    socket.send(packet);
 }
 
-void WerewolfClient::handleNightPhase() 
+void WerewolfClient::handleGameStart()
 {
-    cout << "Es de noche. Espera a que los roles actúen..." << endl;
-    // Lógica para manejar la fase de noche
+    cout << "El juego ha comenzado." << endl;
+}
+
+void WerewolfClient::handleVotePhase()
+{
+    cout << "Es la fase de votación. Escribe el nombre del jugador al que deseas votar para eliminar: ";
+    string vote;
+    cin >> vote;
+    sendVote(vote);
+}
+
+void WerewolfClient::handleNight()
+{
+    cout << "Es la fase de noche. Realiza tu acción nocturna según tu rol." << std::endl;
+    string nightAction;
+    cout << "Escribe el nombre del jugador para tu acción nocturna: ";
+    cin >> nightAction;
+    performNightAction(nightAction);
+}
+
+void WerewolfClient::handleWerewolfPhase()
+{
+    cout << "Es la fase de los Hombres Lobo. Escribe el nombre del jugador que deseas matar: ";
+    string vote;
+    cin >> vote;
+    performNightAction(vote);
+}
+
+void WerewolfClient::handleRoleMessage(const string& message)
+{
+    string role = message.substr(4); // "ROLE" tiene longitud 4
+    cout << "Tu rol es: " << role << endl;
+}
+
+void WerewolfClient::run()
+{
+    string name;
+    cout << "Ingresa tu nombre: ";
+    cin >> name;
+
+    sendName(name);
+
+    while (true) 
+    {
+        receiveMessages();
+    }
 }

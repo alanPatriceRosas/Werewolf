@@ -1,21 +1,36 @@
 #include "WerewolfClient.h"
 #include <iostream>
 
-int main() {
-    int puerto;
-    string nombreJugador, serverIp;
+int main() 
+{
+    string serverIp;
+    unsigned short serverPort;
 
-    cout << "Introduce tu nombre de jugador: ";
-    getline(cin, nombreJugador);
+    cout << "Ingresa la IP del servidor: ";
+    cin >> serverIp;
+    cout << "Ingresa el puerto del servidor: ";
+    cin >> serverPort;
 
-    cout << "Introduce la IP del servidor: ";
-    getline(cin, serverIp);
+    WerewolfClient client(serverIp, serverPort);
 
-    cout << "Introduce el puerto del servidor: ";
-    cin >> puerto;
+    bool connected = false;
+    while (!connected) 
+    {
+        if (!client.connectToServer()) 
+        {
+            cerr << "No se pudo conectar al servidor." << endl;
+            cerr << "Intentando nuevamente..." << endl;
+            sf::sleep(sf::seconds(1)); 
+        }
+        else 
+        {
+            connected = true;
+        }
+    }
 
-    WerewolfClient client(nombreJugador);
-    client.run(serverIp, puerto);
+    client.run();
 
     return 0;
 }
+
+
