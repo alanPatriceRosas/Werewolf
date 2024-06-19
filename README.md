@@ -18,5 +18,25 @@ Trabajo del equipo:
 
 Todos trabajaron correctamente la unica cuestion fue Jonathan, un senior que a medio proyecto aviso que ya no pasaba la materia y se desaparecio (Igual ya no pasa)
 
+Miembros del equipo
+
+(8vo) 
+ROSAS MARTINEZ ALAN PATRICE
+RANGEL D RUGAMA SEBASTIAN 
+ROMANO RODRIGUEZ JUAN ANTONIO 
+HERNANDEZ RODRIGUEZ CESAR ALEJANDRO 
+(4to) 
+SANCHEZ NERI JOSE FRANCISCO
+(2do) 
+LUNA HERNANDEZ JOSE MIGUEL
+SANCHEZ GUTIERREZ MAYRA ALEJANDRA
+DELGADILLO DE LA TORRE OSCAR FERNANDO
+(1ro) 
+CARMONA CORPUS ANTONIO CARLOS 
+VILLEGAS MARTINEZ PAUL 
+HARO MARQUEZ CESAR DANIEL
+Diego Aarón Arrellin Zambrano 
+
+
 
 
