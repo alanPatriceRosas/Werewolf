@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F9213A6B-1AD3-49C3-BE9E-2C45A6DE05D9}|Visual\\Visual.vcxproj|C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\Visual\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F9213A6B-1AD3-49C3-BE9E-2C45A6DE05D9}|Visual\\Visual.vcxproj|solutionrelative:Visual\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Main.cpp",
+              "DocumentMoniker": "C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\Visual\\Main.cpp",
+              "RelativeDocumentMoniker": "Visual\\Main.cpp",
+              "ToolTip": "C:\\Users\\USER\\Documents\\GitHub\\Werewolf\\Visual\\Main.cpp",
+              "RelativeToolTip": "Visual\\Main.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-19T02:30:36.437Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
