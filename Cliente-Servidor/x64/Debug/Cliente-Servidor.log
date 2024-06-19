@@ -1,4 +1,4 @@
-﻿  WerewolfClient.cpp
-  Source1.cpp
+﻿  main_client.cpp
+  WerewolfClient.cpp
   Generando código...
   Cliente-Servidor.vcxproj -> C:\Users\USER\Documents\GitHub\Werewolf\x64\Debug\Cliente-Servidor.exe

@@ -17,10 +17,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WerewolfServer.cpp">
+    <ClCompile Include="main_server.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="WerewolfServer.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

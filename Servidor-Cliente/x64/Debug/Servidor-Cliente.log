@@ -1,4 +1,4 @@
-﻿  Source.cpp
+﻿  main_server.cpp
   WerewolfServer.cpp
 C:\Users\USER\Documents\GitHub\Werewolf\Servidor-Cliente\WerewolfServer.cpp(24,20): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
   Generando código...

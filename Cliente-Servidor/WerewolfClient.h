@@ -1,13 +1,10 @@
-#pragma once
 #ifndef WEREWOLFCLIENT_H
 #define WEREWOLFCLIENT_H
 
 #include <SFML/Network.hpp>
 #include <iostream>
 #include <string>
-#include <thread>
-#include <atomic>
-#include "Role.h"
+
 
 using std::cout;
 using std::cin;
@@ -15,28 +12,29 @@ using std::string;
 using std::cerr;
 using std::endl;
 using std::getline;
-using std::thread;
+
 
 
 class WerewolfClient {
 public:
-    WerewolfClient(const string& playerName);
-
-    void run(const string& serverIp, unsigned short serverPort);
+    WerewolfClient(const string& serverIp, unsigned short serverPort);
+    bool connectToServer();
+    void sendName(const string& name);
+    void receiveMessages();
+    void sendVote(const string& vote);
+    void performNightAction(const string& action);
+    void run();
 
 private:
-    void receiveMessages();
-
     void handleGameStart();
-
     void handleVotePhase();
-
-    void handleNightPhase();
+    void handleNight();
+    void handleWerewolfPhase();
+    void handleRoleMessage(const string& message);
 
     sf::TcpSocket socket;
-    string playerName;
-    std::thread receiveThread;
-    std::atomic<bool> running;
+    string serverIp;
+    unsigned short serverPort;
 };
 
 #endif

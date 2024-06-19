@@ -23,8 +23,8 @@
     <ClInclude Include="WerewolfClient.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main_client.cpp" />
     <ClCompile Include="WerewolfClient.cpp" />
-    <ClCompile Include="Source1.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
